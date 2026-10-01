@@ -20,3 +20,11 @@ docker-build:
 	docker build -t linearlens .
 docker-run:
 	docker run --rm -p 3000:3000 linearlens
+
+.PHONY: build-static preview-workers deploy-workers
+build-static:
+	npm run build:static
+preview-workers:
+	npm run preview:workers
+deploy-workers:
+	npm run deploy:workers

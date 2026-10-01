@@ -11,7 +11,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "build:static": "STATIC_EXPORT=1 next build --webpack",
+    "preview:workers": "npm run build:static && wrangler dev",
+    "deploy:workers": "npm run build:static && wrangler deploy"
   },
   "keywords": [],
   "type": "module",
@@ -33,7 +36,8 @@
     "prettier": "^3.9.9",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.3"
+    "vitest": "^5.0.3",
+    "wrangler": "^4.145.0"
   },
   "engines": {
     "node": ">=20.9.0"

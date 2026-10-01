@@ -54,6 +54,28 @@ Open http://localhost:3000. To use a different host port, change the mapping,
 for example `-p 8080:3000`. The container listens on all interfaces on port 3000.
 Next.js automatically discovers `src/app/icon.svg` as the browser favicon.
 
+## Cloudflare Workers
+
+Workers serves a static Next.js export. The lessons and playgrounds run in the
+browser, so this deployment needs no Next.js adapter or server-side Worker code.
+The default build still produces the standalone server used by Docker.
+
+```sh
+npx wrangler login          # First-time Cloudflare authentication
+npm run build:static       # Export pages, scripts, styles, and favicon into out/
+npm run preview:workers    # Build and preview with the local Workers runtime
+npm run deploy:workers     # Build and publish the linearlens Worker
+# Equivalent Make targets: build-static, preview-workers, deploy-workers
+```
+
+`wrangler.jsonc` serves `out/`, preserves directory-index routing, and returns
+the exported 404 page for unknown paths. Build output and local Wrangler state
+are ignored by Git. Authentication stays in Wrangler’s local configuration.
+
+For Cloudflare Git builds, use `npm run build:static` as the build command and
+`npx wrangler deploy` as the deploy command. Future request-time server features
+would require revisiting the static export deployment.
+
 ## Stack and architecture
 
 Next.js App Router, React, strict TypeScript, Tailwind CSS, SVG, KaTeX, and Vitest.
