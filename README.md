@@ -114,7 +114,7 @@ to B’s columns. Determinants support this geometry; a full determinant lesson 
 
 ### Appearance
 
-The header theme button cycles through System, Light, and Dark. System follows
+The header theme dropdown offers Light, Dark, and System. System follows
 the operating system and updates when its appearance changes. The preference
 is saved locally and synchronized across tabs. A small script applies the theme
 before first paint to avoid a flash; theme controls also work when storage is

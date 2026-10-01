@@ -76,12 +76,14 @@ body {
   line-height: 1.6;
 }
 button,
-input {
+input,
+select {
   font: inherit;
 }
 button,
 a,
-input {
+input,
+select {
   -webkit-tap-highlight-color: transparent;
 }
 a {
@@ -93,7 +95,8 @@ button {
 }
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible {
   outline: 3px solid var(--green);
   outline-offset: 4px;
 }
@@ -1189,11 +1192,8 @@ p {
 .header-controls .header-note {
   margin-left: 0;
 }
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+.theme-select {
+  cursor: pointer;
   min-height: 40px;
   min-width: 110px;
   padding: 7px 12px;
@@ -1203,15 +1203,8 @@ p {
   color: var(--ink);
   font-size: 12px;
 }
-.theme-toggle:hover {
+.theme-select:hover {
   background: var(--selected);
-}
-.theme-toggle > span:first-child {
-  font-size: 18px;
-  line-height: 1;
-}
-.theme-cycle {
-  color: var(--muted);
 }
 @media (max-width: 650px) {
   .site-header {
@@ -1227,7 +1220,7 @@ p {
     width: 100%;
     justify-content: space-between;
   }
-  .theme-toggle {
+  .theme-select {
     min-height: 44px;
   }
 }

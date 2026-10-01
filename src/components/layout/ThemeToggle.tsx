@@ -3,7 +3,6 @@
 import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark" | "system";
-const themes: Theme[] = ["system", "light", "dark"];
 const storageKey = "linearlens-theme";
 const changeEvent = "linearlens-theme-change";
 
@@ -57,30 +56,24 @@ export function ThemeToggle() {
     readPreference,
     () => "system" as Theme,
   );
-  const next = themes[(themes.indexOf(theme) + 1) % themes.length];
-  const label = theme[0].toUpperCase() + theme.slice(1);
   return (
-    <button
-      className="theme-toggle"
-      type="button"
-      aria-label={`Theme: ${label}. Switch to ${next} theme`}
-      title={`Switch to ${next} theme`}
-      onClick={() => {
+    <select
+      className="theme-select"
+      aria-label="Theme"
+      value={theme}
+      onChange={(event) => {
+        const preference = event.target.value as Theme;
         // Theme switching still works when browser storage is unavailable.
         try {
-          window.localStorage.setItem(storageKey, next);
+          window.localStorage.setItem(storageKey, preference);
         } catch {}
-        applyTheme(next);
+        applyTheme(preference);
         window.dispatchEvent(new Event(changeEvent));
       }}
     >
-      <span aria-hidden="true">
-        {theme === "light" ? "☀" : theme === "dark" ? "☾" : "◐"}
-      </span>
-      <span>{label}</span>
-      <span className="theme-cycle" aria-hidden="true">
-        ↻
-      </span>
-    </button>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="system">System</option>
+    </select>
   );
 }
