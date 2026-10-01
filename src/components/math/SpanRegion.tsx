@@ -12,7 +12,7 @@ export function SpanRegion({ u, v }: { u: Vec2; v: Vec2 }) {
         y="36"
         width="528"
         height="528"
-        fill="#397462"
+        fill="var(--green)"
         opacity=".055"
         aria-hidden="true"
       />
@@ -24,7 +24,7 @@ export function SpanRegion({ u, v }: { u: Vec2; v: Vec2 }) {
         cx={origin.x}
         cy={origin.y}
         r="9"
-        fill="#397462"
+        fill="var(--green)"
         opacity=".3"
         aria-hidden="true"
       />
@@ -46,7 +46,7 @@ export function SpanRegion({ u, v }: { u: Vec2; v: Vec2 }) {
       y1={a.y}
       x2={b.x}
       y2={b.y}
-      stroke="#397462"
+      stroke="var(--green)"
       strokeWidth="12"
       opacity=".16"
       aria-hidden="true"

@@ -112,6 +112,14 @@ area of normalized generators with a relative angular tolerance of 1e−9.
 multiplyMatrices(A, B) applies B first, then A. Product columns are A applied
 to B’s columns. Determinants support this geometry; a full determinant lesson is still planned.
 
+### Appearance
+
+The header theme button cycles through System, Light, and Dark. System follows
+the operating system and updates when its appearance changes. The preference
+is saved locally and synchronized across tabs. A small script applies the theme
+before first paint to avoid a flash; theme controls also work when storage is
+unavailable. SVG colors and mathematical notation use the same theme palette.
+
 ### Interaction
 
 Vector components range from −4 to 4. Tips drag with mouse or touch and snap to

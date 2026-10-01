@@ -34,7 +34,7 @@ export default function Home() {
                 <path
                   d="M 35 0 L 0 0 0 35"
                   fill="none"
-                  stroke="#deded3"
+                  stroke="var(--grid)"
                   strokeWidth="1"
                 />
               </pattern>
@@ -51,30 +51,30 @@ export default function Home() {
               </marker>
             </defs>
             <rect width="420" height="420" fill="url(#home-grid)" />
-            <path d="M0 280H420 M140 0V420" stroke="#a6aaa0" />
+            <path d="M0 280H420 M140 0V420" stroke="var(--axis)" />
             <path
               d="M140 280L315 175"
-              stroke="#397462"
+              stroke="var(--green)"
               strokeWidth="4"
               markerEnd="url(#home-arrow)"
             />
             <path
               d="M315 175L245 70"
-              stroke="#bf7851"
+              stroke="var(--orange)"
               strokeWidth="3"
               strokeDasharray="6 5"
               markerEnd="url(#home-arrow)"
             />
             <path
               d="M140 280L245 70"
-              stroke="#737ca6"
+              stroke="var(--purple)"
               strokeWidth="4"
               markerEnd="url(#home-arrow)"
             />
             <text
               x="313"
               y="204"
-              fill="#397462"
+              fill="var(--green)"
               fontSize="23"
               fontStyle="italic"
             >
@@ -83,7 +83,7 @@ export default function Home() {
             <text
               x="269"
               y="109"
-              fill="#bf7851"
+              fill="var(--orange)"
               fontSize="23"
               fontStyle="italic"
             >
@@ -92,13 +92,13 @@ export default function Home() {
             <text
               x="190"
               y="130"
-              fill="#737ca6"
+              fill="var(--purple)"
               fontSize="23"
               fontStyle="italic"
             >
               v + w
             </text>
-            <circle cx="140" cy="280" r="5" fill="#303d34" />
+            <circle cx="140" cy="280" r="5" fill="var(--ink)" />
           </svg>
           <span>MOVE A VECTOR. CHANGE YOUR PERSPECTIVE.</span>
         </div>

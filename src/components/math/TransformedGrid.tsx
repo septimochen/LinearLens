@@ -20,7 +20,7 @@ export function TransformedGrid({ matrix }: { matrix: Mat2 }) {
           y1={a.y}
           x2={b.x}
           y2={b.y}
-          stroke="#397462"
+          stroke="var(--green)"
           strokeWidth={i === 0 ? 1.8 : 1}
           opacity={i === 0 ? 0.6 : 0.25}
         />,
@@ -45,9 +45,9 @@ export function TransformedSquare({ matrix }: { matrix: Mat2 }) {
   return (
     <polygon
       points={points}
-      fill="#bf7851"
+      fill="var(--orange)"
       fillOpacity=".14"
-      stroke="#bf7851"
+      stroke="var(--orange)"
       strokeWidth="1.5"
       aria-label="Transformed unit square"
     />

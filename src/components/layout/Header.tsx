@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 export function Header() {
   return (
     <header className="site-header">
@@ -12,7 +13,10 @@ export function Header() {
           Vector lab <span aria-hidden="true">↗</span>
         </Link>
       </nav>
-      <span className="header-note">A NEW WAY TO SEE MATH</span>
+      <div className="header-controls">
+        <span className="header-note">A NEW WAY TO SEE MATH</span>
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

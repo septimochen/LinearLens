@@ -8,7 +8,7 @@ export function Point({ value, label }: { value: Vec2; label?: string }) {
     <g>
       <circle cx={p.x} cy={p.y} r="4" fill="currentColor" />
       {label && (
-        <text x={p.x + 10} y={p.y - 10}>
+        <text x={p.x + 10} y={p.y - 10} fill="currentColor">
           {label}
         </text>
       )}

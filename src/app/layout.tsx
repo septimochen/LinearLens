@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "katex/dist/katex.min.css";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { themeInitScript } from "@/components/layout/theme-init";
 export const metadata: Metadata = {
   title: {
     default: "LinearLens · Interactive Linear Algebra",
@@ -14,7 +15,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="antialiased">
         <Header />
         {children}
