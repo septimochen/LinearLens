@@ -109,19 +109,35 @@ export default function Home() {
             <span className="eyebrow">THE LEARNING PATH</span>
             <h2>Small ideas. Bigger picture.</h2>
           </div>
-          <span className="muted">01 chapter ready to explore</span>
+          <span className="muted">03 chapters ready to explore</span>
         </div>
         {roadmap.map((title, index) =>
-          index === 0 ? (
+          index < 3 ? (
             <Link
-              href="/chapters/01-vectors"
+              href={
+                [
+                  "/chapters/01-vectors",
+                  "/chapters/02-span-and-basis",
+                  "/chapters/03-linear-transformations",
+                ][index]
+              }
               className="chapter-row available"
               key={title}
             >
-              <span className="chapter-index">01</span>
+              <span className="chapter-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <div>
                 <h3>{title}</h3>
-                <p>Movements, components, and the art of adding arrows.</p>
+                <p>
+                  {
+                    [
+                      "Movements, components, and the art of adding arrows.",
+                      "Build vectors, explore span, and choose a basis.",
+                      "Map the basis and transform the whole coordinate grid.",
+                    ][index]
+                  }
+                </p>
               </div>
               <span className="chapter-badge">
                 EXPLORE <span>↗</span>

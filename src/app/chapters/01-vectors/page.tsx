@@ -113,8 +113,8 @@ export default function VectorLesson() {
           displacement. Addition combines movements. Scalar multiplication
           changes their size and, sometimes, their direction.
         </p>
-        <Link href="/">
-          Explore the course <span>→</span>
+        <Link href="/chapters/02-span-and-basis">
+          Next: Span &amp; basis <span>→</span>
         </Link>
       </section>
     </main>

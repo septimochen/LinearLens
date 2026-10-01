@@ -17,11 +17,13 @@ export function VectorArrow({
   dashed = false,
 }: Props) {
   const id = useId().replaceAll(":", "");
-  const { toSvg } = useCoordinates();
+  const { toSvg, size } = useCoordinates();
   const finish = end ?? add(start, value!);
   const a = toSvg(start),
     b = toSvg(finish);
   const zero = a.x === b.x && a.y === b.y;
+  // Turn labels inward near the plot boundary instead of clipping their text.
+  const labelOnLeft = b.x > size - 140;
   return (
     <g
       className={"vector vector-" + variant}
@@ -61,8 +63,9 @@ export function VectorArrow({
       )}
       {label && (
         <text
-          x={b.x + 13}
-          y={b.y - 13}
+          x={b.x + (labelOnLeft ? -13 : 13)}
+          y={b.y < 65 ? b.y + 25 : b.y - 13}
+          textAnchor={labelOnLeft ? "end" : "start"}
           fill="currentColor"
           className="vector-label"
         >

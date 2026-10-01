@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useId, type ReactNode } from "react";
 import { coordinateSystem, type Bounds } from "@/math/coordinates";
 import { Grid } from "./Grid";
 const PlaneContext = createContext<ReturnType<typeof coordinateSystem> | null>(
@@ -23,6 +23,7 @@ export function CoordinatePlane({
   label?: string;
 }) {
   const system = coordinateSystem(bounds);
+  const clipId = useId().replaceAll(":", "");
   return (
     <PlaneContext.Provider value={system}>
       <svg
@@ -32,7 +33,12 @@ export function CoordinatePlane({
         aria-label={label}
       >
         <Grid step={gridStep} />
-        {children}
+        <defs>
+          <clipPath id={clipId}>
+            <rect x="36" y="36" width="528" height="528" />
+          </clipPath>
+        </defs>
+        <g clipPath={`url(#${clipId})`}>{children}</g>
       </svg>
     </PlaneContext.Provider>
   );

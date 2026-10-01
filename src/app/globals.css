@@ -986,3 +986,126 @@ p {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.preset-row button {
+  font-size: 11px;
+  padding: 6px 9px;
+  background: #fffef8;
+}
+.scalar-control {
+  margin: 18px 0;
+}
+.scalar-control > label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.scalar-control > label span {
+  font-family: monospace;
+}
+.controls-u .legend-dot {
+  background: var(--green);
+}
+.tip-u {
+  color: var(--green);
+}
+.plot-footer label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.plot-footer input {
+  accent-color: var(--green);
+}
+.matrix-controls {
+  border: 0;
+  padding: 0;
+  margin: 25px 0;
+}
+.matrix-controls legend {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+.matrix-editor {
+  display: grid;
+  grid-template-columns: repeat(2, 65px);
+  gap: 12px;
+  border-left: 2px solid var(--green);
+  border-right: 2px solid var(--orange);
+  width: fit-content;
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+.matrix-editor input {
+  width: 65px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 8px;
+  text-align: center;
+  background: #f9faf4;
+}
+.matrix-controls p {
+  font-size: 11px;
+  margin-top: 15px;
+}
+.animation-controls {
+  padding: 15px 0;
+}
+.animation-controls .scalar-control {
+  margin-bottom: 0;
+}
+.interpolation-note {
+  margin-top: 12px;
+}
+.lesson-formula {
+  margin-top: 20px;
+  font-size: 20px;
+}
+.chapter-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.chapter-navigation a {
+  margin-top: 24px;
+}
+.chapter-hero > div:first-child {
+  max-width: 850px;
+}
+.chapter-hero p {
+  max-width: 700px;
+}
+.chapter-stamp {
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+.equation-strip {
+  flex-wrap: wrap;
+}
+@media (max-width: 650px) {
+  .preset-row button {
+    min-height: 36px;
+  }
+  .matrix-editor input {
+    min-height: 44px;
+  }
+  .chapter-navigation {
+    flex-wrap: wrap;
+  }
+  .chapter-hero h1 {
+    font-size: 43px;
+  }
+  .breadcrumb {
+    flex-wrap: wrap;
+  }
+  .equation-strip .math-notation {
+    font-size: 16px;
+  }
+}
