@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { roadmap } from "@/chapters/vectors/content";
+import { chapters } from "@/chapters/course";
 export default function Home() {
   return (
     <main className="home-page">
@@ -109,52 +109,26 @@ export default function Home() {
             <span className="eyebrow">THE LEARNING PATH</span>
             <h2>Small ideas. Bigger picture.</h2>
           </div>
-          <span className="muted">04 chapters ready to explore</span>
+          <span className="muted">13 chapters ready to explore</span>
         </div>
-        {roadmap.map((title, index) =>
-          index < 4 ? (
-            <Link
-              href={
-                [
-                  "/chapters/01-vectors",
-                  "/chapters/02-span-and-basis",
-                  "/chapters/03-linear-transformations",
-                  "/chapters/04-matrix-multiplication",
-                ][index]
-              }
-              className="chapter-row available"
-              key={title}
-            >
-              <span className="chapter-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3>{title}</h3>
-                <p>
-                  {
-                    [
-                      "Movements, components, and the art of adding arrows.",
-                      "Build vectors, explore span, and choose a basis.",
-                      "Map the basis and transform the whole coordinate grid.",
-                      "Compose two maps and discover why order matters.",
-                    ][index]
-                  }
-                </p>
-              </div>
-              <span className="chapter-badge">
-                EXPLORE <span>↗</span>
-              </span>
-            </Link>
-          ) : (
-            <div className="chapter-row" key={title}>
-              <span className="chapter-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3>{title}</h3>
-              <span className="coming-later">Coming later</span>
+        {chapters.map((chapter, index) => (
+          <Link
+            href={`/chapters/${chapter.slug}`}
+            className="chapter-row available"
+            key={chapter.slug}
+          >
+            <span className="chapter-index">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <h3>{chapter.title}</h3>
+              <p>{chapter.description}</p>
             </div>
-          ),
-        )}
+            <span className="chapter-badge">
+              EXPLORE <span>↗</span>
+            </span>
+          </Link>
+        ))}
       </section>
       <section className="home-note">
         <span className="eyebrow">THE PHILOSOPHY</span>

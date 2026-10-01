@@ -13,18 +13,3 @@ export const experiments = [
   },
   { title: "Turn around", text: "Set a = −1. Where does the arrow point now?" },
 ];
-export const roadmap = [
-  "Vectors",
-  "Linear combinations, span and basis",
-  "Linear transformations and matrices",
-  "Matrix multiplication",
-  "Determinant",
-  "Inverse, column space and null space",
-  "Dot product",
-  "Cross product",
-  "Cross products as transformations",
-  "Cramer’s rule",
-  "Change of basis",
-  "Eigenvectors and eigenvalues",
-  "Abstract vector spaces",
-];

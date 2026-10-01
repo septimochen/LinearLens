@@ -15,6 +15,7 @@ export default function CompositionLesson() {
       experiments={experiments}
       summaryTitle="A product records a composition."
       summary="In AB, B acts first and A acts second. Apply A to each column of B to build the product. Changing the order can change every destination. Grouping three maps differently leaves their combined action unchanged, as long as their order stays fixed."
+      next={{ href: "/chapters/05-determinant", title: "Determinant" }}
       previous={{
         href: "/chapters/03-linear-transformations",
         title: "Linear maps",

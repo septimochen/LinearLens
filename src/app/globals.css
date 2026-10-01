@@ -1224,3 +1224,30 @@ p {
     min-height: 44px;
   }
 }
+
+/* Dense formulas and longer chapter names stay within the lesson layout. */
+.advanced-lab .control-panel {
+  min-width: 0;
+}
+.advanced-lab .result-card .math-notation {
+  font-size: 15px;
+}
+.advanced-lab .result-card p + p {
+  margin-top: 10px;
+}
+.advanced-lab .plot-footer {
+  line-height: 1.6;
+}
+.advanced-lab .challenge-status {
+  white-space: normal;
+  flex-shrink: 0;
+  max-width: 240px;
+}
+.matrix-editor input {
+  color: var(--ink);
+}
+
+.function-plot {
+  width: 100%;
+  display: block;
+}

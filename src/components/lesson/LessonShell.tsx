@@ -16,7 +16,9 @@ export function LessonShell({
   summaryTitle,
   next,
   previous,
+  labLabel = "INTERACTIVE 2D LAB",
 }: {
+  labLabel?: string;
   number: string;
   title: string;
   subtitle: string;
@@ -62,7 +64,7 @@ export function LessonShell({
         </div>
       </section>
       <div className="lesson-meta">
-        <span>↗ INTERACTIVE 2D LAB</span>
+        <span>↗ {labLabel}</span>
         <span>◷ 15 MIN EXPLORATION</span>
         <Link href={previous.href}>
           PREVIOUS: {previous.title.toUpperCase()}

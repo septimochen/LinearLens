@@ -15,6 +15,10 @@ and ordered pairs, components, tip-to-tail addition, and scalar multiplication.
 Chapter 2 explores linear combinations, span, independence, and basis. Chapter 3
 connects matrix columns to basis images and transforms an SVG coordinate grid.
 Chapter 4 composes two editable maps, follows their action in stages, and compares multiplication order.
+Chapters 5–7 connect signed area, solution spaces, and projection. Chapters 8–9
+explore oriented area and cross-product maps in a labeled 3D projection. Chapters
+10–12 cover area-based solving, basis translation, and real/complex eigenstructure.
+Chapter 13 applies the same ideas to polynomials and differentiation.
 
 ## Local development
 
@@ -84,11 +88,11 @@ No backend, charting library, global state library, or third-party math library.
 Production builds use Next.js’s Webpack option to support development sandboxes
 that restrict Turbopack’s worker ports; development uses the default Turbopack.
 
-- `src/math/`: pure TypeScript vector, linear-combination, span, matrix-vector, matrix multiplication, determinant, and interpolation operations, plus tests.
+- `src/math/`: pure TypeScript vector, matrix, determinant, inverse, solution-space, projection, cross-product, basis translation, eigenstructure, and polynomial operations, plus tests.
 - `src/components/math/`: shared SVG primitives, span region, transformed grid and square, controls, and notation.
-- `src/chapters/{vectors,basis,transformations,composition}/`: original content and local playground interaction state.
-- `src/components/lesson/`: shared lesson layout for Chapters 2–4.
-- `src/app/`: course home, Chapters 1–4 routes, shared layout, and responsive styles.
+- `src/chapters/`: original lesson content, local playground state, and a shared course registry. Chapters 5–13 live in `advanced/`.
+- `src/components/lesson/`: shared lesson layout for Chapters 2–13 with appropriate lab labels.
+- `src/app/`: course home, all thirteen chapter routes, shared layout, and responsive styles.
 - `src/components/layout/`: shared navigation.
 
 The dependency flow is **math → visualization → interaction → lesson**.
@@ -96,8 +100,10 @@ CoordinatePlane provides a shared SVG coordinate context. Equal scale on each
 axis preserves geometry, and y is inverted centrally to map mathematical
 coordinates to SVG. The square viewBox resizes without changing vector angles.
 VectorArrow accepts a start and either an end or a displacement, supporting
-translated vectors and dashed variants. The same primitives support all four chapters; SVG clipping keeps infinite span
-lines and transformed grids inside the plane.
+translated vectors and dashed variants. The same primitives support the planar lessons; SVG clipping keeps span lines
+and transformed grids inside the plane. The spatial lessons use a separate
+oblique projection with labeled x, y, z axes. Function plots use independent
+axis scales to keep the sampled interval legible.
 
 ### Mathematical conventions
 
@@ -110,7 +116,12 @@ Mat2 uses named row-major entries `{a, b, c, d}` for [[a,b],[c,d]]. Matrix colum
 (a,c) and (b,d) are standard basis images. Span classification uses the signed
 area of normalized generators with a relative angular tolerance of 1e−9.
 multiplyMatrices(A, B) applies B first, then A. Product columns are A applied
-to B’s columns. Determinants support this geometry; a full determinant lesson is still planned.
+to B’s columns. The determinant lesson measures signed area. Inverses and solution spaces share
+the span classifier’s relative angular tolerance: numerically dependent columns
+are treated as singular. A zero matrix has rank zero and the whole input plane
+as its kernel. Eigenvalue discriminants use a relative tolerance of 1e−10;
+values within that tolerance are treated as repeated. Numeric displays round to
+three decimals while calculations retain full precision.
 
 ### Appearance
 
@@ -148,35 +159,48 @@ include noncommuting maps, commuting scales, and a collapse. A challenge checks
 that two nonidentity matrices compose to identity within a 1e−6 tolerance.
 There is no automatic animation in this chapter.
 
-## Roadmap
+## Complete course
 
-Chapters 1–4 have routes. The other chapters are planned.
+All thirteen chapters are implemented and linked from the course home, with
+previous/next navigation through the learning path.
 
-- /chapters/01-vectors
-- /chapters/02-span-and-basis
-- /chapters/03-linear-transformations
-- /chapters/04-matrix-multiplication
+| Chapter                   | Route                                        | Playground                                  |
+| ------------------------- | -------------------------------------------- | ------------------------------------------- |
+| 01 Vectors                | /chapters/01-vectors                         | Addition and scaling                        |
+| 02 Span and basis         | /chapters/02-span-and-basis                  | Linear combinations and reachable targets   |
+| 03 Linear transformations | /chapters/03-linear-transformations          | Basis images and mapped grids               |
+| 04 Matrix multiplication  | /chapters/04-matrix-multiplication           | Composition and order                       |
+| 05 Determinant            | /chapters/05-determinant                     | Signed area, orientation, collapse          |
+| 06 Inverse and spaces     | /chapters/06-inverse-column-space-null-space | Unique, infinite, and impossible preimages  |
+| 07 Dot product            | /chapters/07-dot-product                     | Alignment, angle, orthogonal projection     |
+| 08 Cross product          | /chapters/08-cross-product                   | 3D area and normal direction                |
+| 09 Cross product maps     | /chapters/09-cross-product-transformations   | Skew matrix, kernel, image plane            |
+| 10 Cramer’s rule          | /chapters/10-cramers-rule                    | Column replacement and signed area ratios   |
+| 11 Change of basis        | /chapters/11-change-of-basis                 | Vector coordinates and B⁻¹AB                |
+| 12 Eigenvectors           | /chapters/12-eigenvectors-and-eigenvalues    | Real eigenspaces and complex pairs          |
+| 13 Abstract spaces        | /chapters/13-abstract-vector-spaces          | Polynomial combinations and differentiation |
 
-1. **Vectors — implemented**
-2. **Linear combinations, span and basis — implemented**
-3. **Linear transformations and matrices — implemented**
-4. **Matrix multiplication — implemented**
-5. Determinant
-6. Inverse, column space and null space
-7. Dot product
-8. Cross product
-9. Cross products as transformations
-10. Cramer’s rule
-11. Change of basis
-12. Eigenvectors and eigenvalues
-13. Abstract vector spaces
+The new labs include labeled keyboard controls, presets, reset actions, live
+formulas, experiments, and challenges. Singular systems never divide by zero:
+the inverse and Cramer labs distinguish no solution from infinitely many.
+Dependent basis columns disable coordinate translation. The dot-product lab
+omits undefined angles and projections for zero directions. The eigenvector lab
+excludes the zero vector, handles scalar and defective repeated-eigenvalue maps,
+and reports complex pairs when no real eigenvectors exist.
 
-The next step is Chapter 5: explore determinant as signed area scaling using
-the existing transformed unit square.
+Cross-product components range from −3 to 3. The drawing is an oblique projection
+of 3D vectors: projected lengths and angles are distorted, so component, area,
+and orthogonality readouts use actual 3D calculations. Chapter 9 holds u fixed to
+view v ↦ u × v as a matrix action. Polynomial coefficients and combination weights
+range from −2 to 2. Curves are sampled on −2 ≤ t ≤ 2; the derivative matrix maps
+three input coefficients in P₂ to two output coefficients in P₁.
 
 ## Current scope
 
-The initial playground is two-dimensional and bounded. Direct dragging is a
-visual convenience; labeled inputs provide keyboard access. Lessons do not save
-progress. Tests cover pure math and coordinate conversion, not browser gestures
-or visual styling.
+Planar vectors and matrices remain bounded interactive examples. The spatial
+labs use a fixed 3D projection rather than a camera with orbit controls. Direct
+dragging is a visual convenience; labeled inputs provide keyboard access.
+Lessons do not save progress. Unit tests cover pure math, degenerate cases,
+course-route coverage, and strict parsing of lesson formulas. Browser checks
+verify representative controls and live outputs; gesture automation is not
+part of the unit test suite.
