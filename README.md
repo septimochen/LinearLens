@@ -36,6 +36,24 @@ npm start             # Serve the production build
 make check            # Tests, lint, type checking, production build
 ```
 
+## Docker
+
+The multi-stage Dockerfile installs locked dependencies, builds Next.js, and
+copies only its standalone server, static files, and public assets into a
+Node.js 24 runtime image. The server runs as the unprivileged `node` user.
+The whitelist-style `.dockerignore` excludes local dependencies, build output,
+Git history, and unrelated files from the build context.
+
+```sh
+docker build -t linearlens .
+docker run --rm -p 3000:3000 linearlens
+# Or: make docker-build && make docker-run
+```
+
+Open http://localhost:3000. To use a different host port, change the mapping,
+for example `-p 8080:3000`. The container listens on all interfaces on port 3000.
+Next.js automatically discovers `src/app/icon.svg` as the browser favicon.
+
 ## Stack and architecture
 
 Next.js App Router, React, strict TypeScript, Tailwind CSS, SVG, KaTeX, and Vitest.

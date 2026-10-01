@@ -14,3 +14,9 @@ typecheck:
 check: test lint typecheck build
 format:
 	npm run format
+
+.PHONY: docker-build docker-run
+docker-build:
+	docker build -t linearlens .
+docker-run:
+	docker run --rm -p 3000:3000 linearlens
