@@ -125,7 +125,9 @@ three decimals while calculations retain full precision.
 
 ### Appearance
 
-The header theme dropdown offers Light, Dark, and System. System follows
+The header’s compact appearance switch uses sun, moon, and monitor icons for
+Light, Dark, and System, with a raised selected segment. The native radio group
+supports Tab and arrow keys, labeled tooltips, and a visible focus ring. System follows
 the operating system and updates when its appearance changes. The preference
 is saved locally and synchronized across tabs. A small script applies the theme
 before first paint to avoid a flash; theme controls also work when storage is
