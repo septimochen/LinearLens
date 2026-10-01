@@ -20,3 +20,13 @@ export function interpolateMatrix(from: Mat2, to: Mat2, t: number): Mat2 {
     d: from.d + (to.d - from.d) * t,
   };
 }
+
+/** AB applies B first, then A. Each product column is A applied to a B column. */
+export function multiplyMatrices(left: Mat2, right: Mat2): Mat2 {
+  return {
+    a: left.a * right.a + left.b * right.c,
+    b: left.a * right.b + left.b * right.d,
+    c: left.c * right.a + left.d * right.c,
+    d: left.c * right.b + left.d * right.d,
+  };
+}

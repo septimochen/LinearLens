@@ -1109,3 +1109,20 @@ p {
     font-size: 16px;
   }
 }
+
+.composition-editors {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.composition-columns {
+  padding: 24px 30px;
+  border-top: 1px solid var(--line);
+}
+.composition-columns p {
+  font-size: 14px;
+}
+.reset-button[aria-pressed="true"] {
+  background: #e4ede5;
+  border-color: #397462;
+}

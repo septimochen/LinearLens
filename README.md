@@ -14,6 +14,7 @@ playground, and small experiments. Chapter 1 introduces vectors as displacements
 and ordered pairs, components, tip-to-tail addition, and scalar multiplication.
 Chapter 2 explores linear combinations, span, independence, and basis. Chapter 3
 connects matrix columns to basis images and transforms an SVG coordinate grid.
+Chapter 4 composes two editable maps, follows their action in stages, and compares multiplication order.
 
 ## Local development
 
@@ -83,11 +84,11 @@ No backend, charting library, global state library, or third-party math library.
 Production builds use Next.js’s Webpack option to support development sandboxes
 that restrict Turbopack’s worker ports; development uses the default Turbopack.
 
-- `src/math/`: pure TypeScript vector, linear-combination, span, matrix-vector, determinant, and interpolation operations, plus tests.
+- `src/math/`: pure TypeScript vector, linear-combination, span, matrix-vector, matrix multiplication, determinant, and interpolation operations, plus tests.
 - `src/components/math/`: shared SVG primitives, span region, transformed grid and square, controls, and notation.
-- `src/chapters/{vectors,basis,transformations}/`: original content and local playground interaction state.
-- `src/components/lesson/`: shared lesson layout for Chapters 2 and 3.
-- `src/app/`: course home, Chapters 1–3 routes, shared layout, and responsive styles.
+- `src/chapters/{vectors,basis,transformations,composition}/`: original content and local playground interaction state.
+- `src/components/lesson/`: shared lesson layout for Chapters 2–4.
+- `src/app/`: course home, Chapters 1–4 routes, shared layout, and responsive styles.
 - `src/components/layout/`: shared navigation.
 
 The dependency flow is **math → visualization → interaction → lesson**.
@@ -95,7 +96,7 @@ CoordinatePlane provides a shared SVG coordinate context. Equal scale on each
 axis preserves geometry, and y is inverted centrally to map mathematical
 coordinates to SVG. The square viewBox resizes without changing vector angles.
 VectorArrow accepts a start and either an end or a displacement, supporting
-translated vectors and dashed variants. The same primitives support all three chapters; SVG clipping keeps infinite span
+translated vectors and dashed variants. The same primitives support all four chapters; SVG clipping keeps infinite span
 lines and transformed grids inside the plane.
 
 ### Mathematical conventions
@@ -108,7 +109,8 @@ length from Math.hypot.
 Mat2 uses named row-major entries `{a, b, c, d}` for [[a,b],[c,d]]. Matrix columns
 (a,c) and (b,d) are standard basis images. Span classification uses the signed
 area of normalized generators with a relative angular tolerance of 1e−9.
-Determinants support this geometry; a full determinant lesson is still planned.
+multiplyMatrices(A, B) applies B first, then A. Product columns are A applied
+to B’s columns. Determinants support this geometry; a full determinant lesson is still planned.
 
 ### Interaction
 
@@ -131,18 +133,26 @@ matrices can collapse space even if the final matrix is invertible. Matrix edits
 stop animation and show the final map immediately. Displayed live equations round
 to three decimal places; math operations retain full precision.
 
+Chapter 4 provides two editable matrices, order comparison (AB versus BA),
+a draggable test vector, stage buttons, and a manual 0–200% journey scrubber.
+The second stage applies the second map to the first map’s output. Presets
+include noncommuting maps, commuting scales, and a collapse. A challenge checks
+that two nonidentity matrices compose to identity within a 1e−6 tolerance.
+There is no automatic animation in this chapter.
+
 ## Roadmap
 
-Chapters 1–3 have routes. The other chapters are planned.
+Chapters 1–4 have routes. The other chapters are planned.
 
 - /chapters/01-vectors
 - /chapters/02-span-and-basis
 - /chapters/03-linear-transformations
+- /chapters/04-matrix-multiplication
 
 1. **Vectors — implemented**
 2. **Linear combinations, span and basis — implemented**
 3. **Linear transformations and matrices — implemented**
-4. Matrix multiplication
+4. **Matrix multiplication — implemented**
 5. Determinant
 6. Inverse, column space and null space
 7. Dot product
@@ -153,9 +163,8 @@ Chapters 1–3 have routes. The other chapters are planned.
 12. Eigenvectors and eigenvalues
 13. Abstract vector spaces
 
-The next step is Chapter 4: compose two transformations and connect their
-sequential action to matrix multiplication. Matrix-matrix multiplication has not
-been implemented yet.
+The next step is Chapter 5: explore determinant as signed area scaling using
+the existing transformed unit square.
 
 ## Current scope
 

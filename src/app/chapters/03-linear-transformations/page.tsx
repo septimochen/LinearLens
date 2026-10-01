@@ -15,6 +15,10 @@ export default function TransformationLesson() {
       experiments={experiments}
       summaryTitle="A matrix records where the basis goes."
       summary="A 2×2 matrix stores the images of the standard basis in its columns. Matrix-vector multiplication forms their linear combination. A linear map fixes zero and preserves sums and scaling; it can stretch, shear, turn, reflect, or collapse space."
+      next={{
+        href: "/chapters/04-matrix-multiplication",
+        title: "Matrix multiplication",
+      }}
       previous={{ href: "/chapters/02-span-and-basis", title: "Span & basis" }}
     >
       <TransformationPlayground />

@@ -109,16 +109,17 @@ export default function Home() {
             <span className="eyebrow">THE LEARNING PATH</span>
             <h2>Small ideas. Bigger picture.</h2>
           </div>
-          <span className="muted">03 chapters ready to explore</span>
+          <span className="muted">04 chapters ready to explore</span>
         </div>
         {roadmap.map((title, index) =>
-          index < 3 ? (
+          index < 4 ? (
             <Link
               href={
                 [
                   "/chapters/01-vectors",
                   "/chapters/02-span-and-basis",
                   "/chapters/03-linear-transformations",
+                  "/chapters/04-matrix-multiplication",
                 ][index]
               }
               className="chapter-row available"
@@ -135,6 +136,7 @@ export default function Home() {
                       "Movements, components, and the art of adding arrows.",
                       "Build vectors, explore span, and choose a basis.",
                       "Map the basis and transform the whole coordinate grid.",
+                      "Compose two maps and discover why order matters.",
                     ][index]
                   }
                 </p>
