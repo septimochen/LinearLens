@@ -4,7 +4,6 @@
 !package.json
 !package-lock.json
 !tsconfig.json
-!next-env.d.ts
 !next.config.ts
 !postcss.config.mjs
 !eslint.config.mjs
