@@ -66,19 +66,21 @@ browser, so this deployment needs no Next.js adapter or server-side Worker code.
 The default build still produces the standalone server used by Docker.
 
 ```sh
-npx wrangler login          # First-time Cloudflare authentication
+npx cf auth login          # First-time Cloudflare authentication
 npm run build:static       # Export pages, scripts, styles, and favicon into out/
-npm run preview:workers    # Build and preview with the local Workers runtime
+npm run preview:workers    # Build and start the CLI-selected development server
 npm run deploy:workers     # Build and publish the linearlens Worker
 # Equivalent Make targets: build-static, preview-workers, deploy-workers
 ```
 
-`wrangler.jsonc` serves `out/`, preserves directory-index routing, and returns
-the exported 404 page for unknown paths. Build output and local Wrangler state
-are ignored by Git. Authentication stays in Wrangler’s local configuration.
+`cloudflare.config.ts` defines the Worker and asset routing.
+`wrangler.config.ts` points the CLI implementation at `out/`. Both configurations
+are tracked; build output and local Cloudflare state are ignored by Git.
+Cloudflare CLI requires Node.js 22 or newer. Use `make check-workers` to validate
+a deployment without uploading it.
 
-For Cloudflare Git builds, use `npm run build:static` as the build command and
-`npx wrangler deploy` as the deploy command. Future request-time server features
+For Cloudflare Git builds, use `npm run build:workers` as the build command and
+`npx cf deploy --prebuilt` as the deploy command. Future request-time server features
 would require revisiting the static export deployment.
 
 ## Stack and architecture

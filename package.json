@@ -13,8 +13,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build:static": "STATIC_EXPORT=1 next build --webpack",
-    "preview:workers": "npm run build:static && wrangler dev",
-    "deploy:workers": "npm run build:static && wrangler deploy"
+    "preview:workers": "npm run build:static && cf dev",
+    "build:workers": "npm run build:static && wrangler build --experimental-new-config --experimental-cf-build-output",
+    "deploy:workers": "npm run build:workers && cf deploy --prebuilt"
   },
   "keywords": [],
   "type": "module",
@@ -41,6 +42,6 @@
     "wrangler": "^4.145.0"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22"
   }
 }

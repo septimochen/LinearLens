@@ -21,10 +21,16 @@ docker-build:
 docker-run:
 	docker run --rm -p 3000:3000 linearlens
 
-.PHONY: build-static preview-workers deploy-workers
+.PHONY: build-static build-workers preview-workers deploy-workers check-workers
 build-static:
 	npm run build:static
+build-workers:
+	npm run build:workers
 preview-workers:
 	npm run preview:workers
 deploy-workers:
 	npm run deploy:workers
+
+# Validate the Cloudflare deployment without uploading it.
+check-workers:
+	npm run deploy:workers -- --dry-run

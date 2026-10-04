@@ -24,3 +24,8 @@ coverage/
 !wrangler.jsonc
 .wrangler/
 out/
+
+!cloudflare.config.ts
+!wrangler.config.ts
+.cloudflare/
+dist/
